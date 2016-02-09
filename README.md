@@ -3,7 +3,7 @@
 A small tool for crawling the internal links of a web application and generating a visual map of the application's structure.
 
 
-## Setup
+## Dependencies
 
 To install gem dependencies, run the following from the project root:
 
