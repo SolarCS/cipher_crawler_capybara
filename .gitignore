@@ -1,0 +1,55 @@
+# Ignore bundler config.
+/.bundle
+
+# Ignore the default SQLite database.
+/db/*.sqlite3
+/db/*.sqlite3-journal
+
+# Ignore all logfiles and tempfiles.
+/log/*.log
+/tmp
+/public/uploads
+
+*.rbc
+*.sassc
+.sass-cache
+capybara-*.html
+#.rspec
+.rvmrc
+/.bundle
+/vendor/bundle
+/log/*
+/tmp/*
+/db/*.sqlite3
+/public/system/*
+/coverage/
+/spec/tmp/*
+**.orig
+rerun.txt
+pickle-email-*.html
+.project
+config/initializers/secret_token.rb
+**.swp
+*.swo
+*.un~
+*.sublime-project
+*.sublime-workspace
+.ruby-gemset
+
+# assets
+/public/assets/
+bower_components
+lib/assets/bower_components/
+vendor/assets/bower_components/
+
+.DS_Store
+
+config/mongoid.development.yml
+config/development.yml
+config/initializers/version.rb
+
+# rspec failures file
+rspec.results
+
+/.idea
+*.iml
