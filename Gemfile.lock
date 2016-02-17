@@ -11,6 +11,7 @@ GEM
       xpath (~> 2.0)
     cliver (0.3.2)
     coderay (1.1.0)
+    json (1.8.3)
     launchy (2.4.3)
       addressable (~> 2.3)
     method_source (0.8.2)
@@ -45,9 +46,10 @@ PLATFORMS
 
 DEPENDENCIES
   capybara
+  json
   launchy
   poltergeist
   pry
 
 BUNDLED WITH
-   1.10.6
+   1.11.2

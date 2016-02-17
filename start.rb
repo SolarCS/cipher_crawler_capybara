@@ -1,7 +1,9 @@
+#!/usr/bin/env ruby
+
 # Require the gems
 require 'capybara/poltergeist'
-require 'pry'
-require 'pry-nav'
+require 'json'
+
 # Configure Capybara to use Poltergeist as the driver
 Capybara.default_driver = :poltergeist
 
@@ -14,7 +16,7 @@ end
 # Instantiate a new browser instance
 browser = Capybara.current_session
 
-url = 'http://ngauthier.com/'
+url = "http://www.hardscrabble.net/"
 
 # Visit the root URL
 browser.visit url
@@ -22,14 +24,26 @@ browser.visit url
 # Save page
 browser.save_page
 
-all_links = browser.all('a')
-
 links_hash = {}
 
-all_links.each do |link|
-  if link['href'].include? browser.current_url
-    links_hash[link['href']] = ""
+root_links = browser.all('a')
+root_links = root_links.collect{|a|a['href']}
+root_links.uniq.each do |page2|
+  if page2.include? url
+    browser.visit page2
+    browser.save_page
+    links2 = browser.all('a')
+    links2 = links2.collect{|a|a['href']}
+    arr = []
+    links2.uniq.each do |page3|
+      if page3.include? url
+        arr.push(page3)
+        links_hash[browser.current_url] = arr
+      end
+    end
   end
 end
-puts links_hash
-# binding.pry
+
+File.open("results.txt", "w") do|somefile|
+  somefile.write(links_hash.to_json)
+end
