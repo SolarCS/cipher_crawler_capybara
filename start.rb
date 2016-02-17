@@ -2,7 +2,7 @@
 
 # Require the gems
 require 'capybara/poltergeist'
-require 'json'
+require 'awesome_print'
 
 # Configure Capybara to use Poltergeist as the driver
 Capybara.default_driver = :poltergeist
@@ -45,5 +45,5 @@ root_links.uniq.each do |page2|
 end
 
 File.open("results.txt", "w") do|somefile|
-  somefile.write(links_hash.to_json)
+  somefile.write(links_hash.awesome_inspect)
 end
