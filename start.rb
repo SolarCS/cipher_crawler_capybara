@@ -1,6 +1,7 @@
 # Require the gems
 require 'capybara/poltergeist'
-
+require 'pry'
+require 'pry-nav'
 # Configure Capybara to use Poltergeist as the driver
 Capybara.default_driver = :poltergeist
 
@@ -13,7 +14,7 @@ end
 # Instantiate a new browser instance
 browser = Capybara.current_session
 
-url = 'http://www.hardscrabble.net'
+url = 'http://ngauthier.com/'
 
 # Visit the root URL
 browser.visit url
@@ -21,31 +22,14 @@ browser.visit url
 # Save page
 browser.save_page
 
-# Grab all the links on the page to click the last link to all the archives
-browser.all('.posts a').last.click
+all_links = browser.all('a')
 
-# Save next page of all archives
-browser.save_page
+links_hash = {}
 
-# Save new links in the posts variable
-posts = browser.all '.posts li'
-
-# Create a class to organize the individual posts
-# class Post
-#   attr_reader :title :link
-#
-#   def initialize(title, link)
-#     @title = title
-#     @link = link
-#   end
-# end
-
-# Output title/links and store the Entry object in the entries array
-# postsArray = []
-
-posts.each do |post|
-  puts "#{post.find('a')['href']}"
-  puts post.find('span').text
-  puts post.find('a').text, "\n"
-  # postsArray << Post.new(title, link)
+all_links.each do |link|
+  if link['href'].include? browser.current_url
+    links_hash[link['href']] = ""
+  end
 end
+puts links_hash
+# binding.pry
